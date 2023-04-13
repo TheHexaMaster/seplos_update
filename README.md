@@ -19,14 +19,11 @@ $ ls .ssh (output shall be: authorized_keys id_rsa id_rsa.pub known_hosts)
 3. SSH & Web Terminal Config Update
 
 - With file editor, open config/.ssh/id_rsa.pub
-- Copy to SSH Web Terminal Config:
+- Copypaste input of id_rsa.pub to SSH Web Terminal Config:
 ```
 authorized_keys:
   - >-
-    ssh-rsa
-    
-   ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-    root@cccccc-ssh
+<pastehere>
 ```
 - For password, let password: ""
 - Restart
