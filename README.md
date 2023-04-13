@@ -29,6 +29,7 @@ authorized_keys:
 - Restart
 ```
 $ ssh root@127.0.0.1 (for testing purpose. If login ok w/o pwd, continue)
+$ exit
 ```
 4. Terminal SSH
 ```
