@@ -5,7 +5,7 @@ sensor:
       bms_residual_capacity_kwh:
         friendly_name: "BMS Residual Capacity(Kwh)"
         value_template: "{{(((states('sensor.bms_residual_capacity')| float(0) * states('sensor.bms_total_voltage')| float(0))) | round(3)| float * 0.001) | round(3) }}"
-        unit_of_measurement: "Kwh"
+        unit_of_measurement: "kWh"
         device_class: power
 #        icon: mdi:home-battery
         unique_id: "bmsresidual_capacity_kw999"
