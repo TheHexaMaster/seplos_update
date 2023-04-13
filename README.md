@@ -1,4 +1,4 @@
-MSB Updated Fork for Seplos BMS - Exprimental, only with HAOS usage.
+Updated Fork for Seplos BMS - Exprimental, only with HAOS usage.
 
 1. Install SSH & Web Terminal, Mosquitto Broker
 
