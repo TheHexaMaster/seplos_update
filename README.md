@@ -12,9 +12,9 @@ Updated Fork for Seplos BMS - Exprimental, only with HAOS usage.
 $ cd /config
 $ mkdir .ssh
 $ ssh-keygen -t rsa -b 2048 (enter only, no names)
-$ ls .ssh (output shall be: id_rsa id_rsa.pub known_hosts)
 $ ssh-copy-id root@127.0.0.1 (use your defined temporrary password)
 $ cp /root/.ssh/* .ssh/
+$ ls .ssh (output shall be: id_rsa id_rsa.pub known_hosts)
 ```
 3. SSH & Web Terminal Config Update
 
