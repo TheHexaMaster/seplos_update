@@ -8,6 +8,7 @@ MQTTPASWD=$(grep "MQTTPASWD" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{p
 TELEPERIOD=$(grep "TELEPERIOD" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
 id_prefix=$(grep "id_prefix" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
 MAXSIZE=$(grep "MAXSIZE" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
+MAXSIZELAST=$(grep "MAXSIZELAST" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
 CELL_MIN_VOLT=$(grep "CELL_MIN_VOLT" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
 CELL_MAX_VOLT=$(grep "CELL_MAX_VOLT" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
 
@@ -29,9 +30,14 @@ checkcellsvoltage()
 }
 
 # The main script....
+LASTDATA=/root/share/SEPLOS_MQTT/BMS_lastdata.log
 LOGNAME=/root/share/SEPLOS_MQTT/BMS_error.log
 NOUPFILE=/root/share/SEPLOS_MQTT/nohup.out
 #cd ~/SEPLOS_MQTT/
+if [ ! -f "$LASTDATA" ]; then
+touch "$LASTDATA"
+fi
+
 if [ ! -f "$LOGNAME" ]; then
 touch "$LOGNAME"
 fi
@@ -42,6 +48,11 @@ fi
 
 #for (( ; ; ))
 #do
+  LASTDATA_SIZE=$(ls -l "$LASTDATA" | awk '{print $5}')
+  if [ $LASTDATA_SIZE -ge $MAXSIZELAST ]; then
+    mv "$LASTDATA" "$LASTDATA".old
+  fi
+
   LOGNAME_SIZE=$(ls -l "$LOGNAME" | awk '{print $5}')
   if [ $LOGNAME_SIZE -ge $MAXSIZE ]; then
     mv "$LOGNAME" "$LOGNAME".old
@@ -153,7 +164,8 @@ mqtt_argument=$(printf "{\
 
 # send MQTT message with all parameters
         mosquitto_pub -h $MQTTHOST -u $MQTTUSER -P $MQTTPASWD -t "homeassistant/sensor/"$TOPIC"_"$id_prefix"" -m "$mqtt_argument"
-#       echo "mqtt sent"
+#       echo $mqtt_argument
+echo "$(date) - $mqtt_argument" >> $LASTDATA
 
                 fi
         fi
