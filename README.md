@@ -5,6 +5,7 @@ Updated Fork for Seplos BMS - Exprimental, only with HAOS usage.
 - Install SSH & Web Terminal => username: root, password: => "yourstrongpasswordonlyfortemporraryusage"
 - RUN SSH & Web Terminal
 - RUN Mosquitto Broker (127.0.0.1 for local usage, define login / password, do not use local user / root login)
+- Set-up Mosquitto Broker add-on
 
 2. SSH:
 ```
