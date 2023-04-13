@@ -14,7 +14,7 @@ $ mkdir .ssh
 $ ssh-keygen -t rsa -b 2048 (enter only, no names)
 $ ssh-copy-id root@127.0.0.1 (use your defined temporrary password)
 $ cp /root/.ssh/* .ssh/
-$ ls .ssh (output shall be: id_rsa id_rsa.pub known_hosts)
+$ ls .ssh (output shall be: authorized_keys id_rsa id_rsa.pub known_hosts)
 ```
 3. SSH & Web Terminal Config Update
 
