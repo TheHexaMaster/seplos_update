@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # Config parameter Load
-MQTTHOST=$(grep "MQTTHOST" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
-TOPIC=$(grep "TOPIC" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
-MQTTUSER=$(grep "MQTTUSER" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
-MQTTPASWD=$(grep "MQTTPASWD" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
-TELEPERIOD=$(grep "TELEPERIOD" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
-id_prefix=$(grep "id_prefix" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
-MAXSIZE=$(grep "MAXSIZE" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
-MAXSIZELAST=$(grep "MAXSIZELAST" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
-CELL_MIN_VOLT=$(grep "CELL_MIN_VOLT" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
-CELL_MAX_VOLT=$(grep "CELL_MAX_VOLT" /root/share/SEPLOS_MQTT/config.ini | awk -F "=" '{print $2}')
+MQTTHOST=$(grep "MQTTHOST" /root/share/seplos_update/config.ini | awk -F "=" '{print $2}')
+TOPIC=$(grep "TOPIC" /root/share/seplos_update/config.ini | awk -F "=" '{print $2}')
+MQTTUSER=$(grep "MQTTUSER" /root/share/seplos_update/config.ini | awk -F "=" '{print $2}')
+MQTTPASWD=$(grep "MQTTPASWD" /root/share/seplos_update/config.ini | awk -F "=" '{print $2}')
+TELEPERIOD=$(grep "TELEPERIOD" /root/share/seplos_update/config.ini | awk -F "=" '{print $2}')
+id_prefix=$(grep "id_prefix" /root/share/seplos_update/config.ini | awk -F "=" '{print $2}')
+MAXSIZE=$(grep "MAXSIZE" /root/share/seplos_update/config.ini | awk -F "=" '{print $2}')
+MAXSIZELAST=$(grep "MAXSIZELAST" /root/share/seplos_update/config.ini | awk -F "=" '{print $2}')
+CELL_MIN_VOLT=$(grep "CELL_MIN_VOLT" /root/share/seplos_update/config.ini | awk -F "=" '{print $2}')
+CELL_MAX_VOLT=$(grep "CELL_MAX_VOLT" /root/share/seplos_update/config.ini | awk -F "=" '{print $2}')
 
 # The function....
 
@@ -30,10 +30,10 @@ checkcellsvoltage()
 }
 
 # The main script....
-LASTDATA=/root/share/SEPLOS_MQTT/BMS_lastdata.log
-LOGNAME=/root/share/SEPLOS_MQTT/BMS_error.log
-NOUPFILE=/root/share/SEPLOS_MQTT/nohup.out
-#cd ~/SEPLOS_MQTT/
+LASTDATA=/root/share/seplos_update/BMS_lastdata.log
+LOGNAME=/root/share/seplos_update/BMS_error.log
+NOUPFILE=/root/share/seplos_update/nohup.out
+#cd ~/seplos_update/
 if [ ! -f "$LASTDATA" ]; then
 touch "$LASTDATA"
 fi
@@ -64,7 +64,7 @@ fi
     cat /dev/null > "$NOUPFILE"
   fi
 
-   QUERY=$(/root/share/SEPLOS_MQTT/query_seplos_ha.sh 4201)
+   QUERY=$(/root/share/seplos_update/query_seplos_ha.sh 4201)
 
 # Find lowest and high value
                onlycells=$(echo $QUERY|awk '{print $1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16}')
